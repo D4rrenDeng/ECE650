@@ -1,7 +1,8 @@
 --- # Personal information
-first: FIRST_NAME
-last: LAST_NAME
-watiam: WATIAM_ID
-student: STUDENT_ID
-email: email
+first: Shengfeng
+last: Deng
+watiam: s3deng
+student: 20591615
+email: s3deng@uwaterloo.ca
+hour: 23
 ...
