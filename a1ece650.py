@@ -71,10 +71,10 @@ def generate_graph():
         for i in range(len(values) - 1):
             t1 = values[i]
             t2 = values[i + 1]
-            vx1 = x1 + t1 * (x2 - x1)
-            vy1 = y1 + t1 * (y2 - y1)
-            vx2 = x1 + t2 * (x2 - x1)
-            vy2 = y1 + t2 * (y2 - y1)
+            vx1 = round(x1 + t1 * (x2 - x1),3)
+            vy1 = round(y1 + t1 * (y2 - y1),3)
+            vx2 = round(x1 + t2 * (x2 - x1),3)
+            vy2 = round(y1 + t2 * (y2 - y1),3)
             if not (vx1, vy1) in vertices:
                 vertices[(vx1, vy1)] = "VV" + str(vertex_count)
                 vertex_count += 1
@@ -99,6 +99,8 @@ def main():
     while True:
         try:
             line = sys.stdin.readline()
+            if line in (None, '', '\n'):
+                raise EOFError
             line = line.replace('\n', '')
             line_list = line.lstrip().split('"')
             r = re.compile("[-]?[0-9]+")
@@ -210,8 +212,9 @@ def main():
                 print("Error: unrecognized command!")
                 continue
         except KeyboardInterrupt:
-            print("Error: KeyboardInterrupt occured!")
-            sys.exit(0)
+            sys.exit(1)
+        except EOFError:
+            break
         except Exception as e:
             print("Error: " + str(e))
             continue
